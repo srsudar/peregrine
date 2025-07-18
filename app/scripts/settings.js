@@ -4,7 +4,7 @@
 // create new directs and delete ones. 
 
 // When the user specifies a key and redirect, it's saved. 
-var createRedirect = function() {
+var createRedirect = async function() {
   var given_key = document.getElementById("newInput").value;
   var redirect = document.getElementById("url").value;
   if (redirect.substring(0, 7) != "http://" && redirect.substring(0, 8) != "https://") {
@@ -16,15 +16,22 @@ var createRedirect = function() {
   if(given_key != undefined && given_key != "" && given_key != " ") {
     document.getElementById("confirmationVal").innerHTML = "Your Redirect was created! <br />" +
       "<b>" + given_key + "</b>" + " --> " + redirect; 
-    localStorage[given_key] = redirect; 
+    
+    // Save to chrome.storage.local instead of localStorage
+    const data = {};
+    data[given_key] = redirect;
+    await chrome.storage.local.set(data);
   }  
 }
 
 // Displays saved redirects in a table.
-window.onload = function() {
+window.onload = async function() {
   var table = document.getElementById("mainTables");
 
-  for (var key in localStorage) {
+  // Get all stored redirects
+  const allRedirects = await chrome.storage.local.get(null);
+  
+  for (var key in allRedirects) {
     // Creates an empty table row and adds it to the first position of the table
     var row = table.insertRow(-1);
 
@@ -35,7 +42,7 @@ window.onload = function() {
 
     // Populates the new cells with text and a delete button
     cell1.innerHTML = key;
-    cell2.innerHTML = localStorage[key]; 
+    cell2.innerHTML = allRedirects[key]; 
     cell3.innerHTML = "<button id='" + key + "' class='removeElement'>Remove</button>" 
   }
 
@@ -47,13 +54,12 @@ window.onload = function() {
 
 // Removes the key, redirect, and row in the table and refreshes the page so that
 // the table of redirects is updated.
-var removeRedirect = function(button) {  
+var removeRedirect = async function(button) {  
     var key = button.id;
     console.log("Deleting " + button.id); 
-    localStorage.removeItem(key);
+    await chrome.storage.local.remove(key);
     chrome.tabs.reload();
 }
 
 var button = document.getElementById("new").onclick = createRedirect;
 var remove = document.getElementsByClassName("removeElement").onclick = function () {gallerymake();};
-
