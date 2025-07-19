@@ -4,20 +4,33 @@
         <meta charset="utf-8">
         <link href="styles/main.css" rel="stylesheet">
     </head>
-
-  <body>
+    <body>
         <div id="topBar">
             <span id='main'>Create a shortcut for this url?</span>
-            <span><a href="#" id="settings">Settings</a></span>
         </div>
-  
+
         <div id="inputForm">
             <input class="textBox" id="inputval" type="text" maxlength="50"/>
             <button id="submit">Create</button>
         </div>
- 
-       <p id="confirmation"></p> 
 
+        <p id="confirmation"></p>
+
+        <div class="redirects-section">
+            <div class="redirects-title">Redirects for this url:</div>
+            <div class="redirect-item">
+                <span class="redirect-arrow">></span>
+                <span>ex</span>
+            </div>
+            <div class="redirect-item">
+                <span class="redirect-arrow">></span>
+                <span>extensions</span>
+            </div>
+        </div>
+
+        <div id="bottomBar">
+            <a href="#" id="settings">Settings</a>
+        </div>
         <script src="scripts/popup.js" type="module"></script>
     </body>
 </html>
