@@ -39,7 +39,9 @@ var showExistingRedirects = async function() {
         existingDiv.style.marginTop = '10px';
         existingDiv.style.fontSize = '11px';
         existingDiv.style.color = '#666';
-        existingDiv.innerHTML = '<b>Existing shortcuts:</b> ' + existingKeys.join(', ');
+        existingDiv.innerHTML = '<b>Existing shortcuts:</b><ul>' + 
+            existingKeys.map(key => '<li>' + key + '</li>').join('') + 
+            '</ul>';
         
         // Insert after the confirmation paragraph
         const confirmation = document.getElementById('confirmation');
