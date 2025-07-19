@@ -1,5 +1,5 @@
 {
-  "name": "Redirect",
+  "name": "Peregrine",
   "version": "1.0.2",
   "manifest_version": 3,
   "description": "An extension that allows users to easily navigate to saved urls.",
@@ -29,5 +29,11 @@
   "host_permissions": [
     "http://*/*",
     "https://*/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["settings.html", "styles/settings.css", "scripts/settings.js"],
+      "matches": ["<all_urls>"]
+    }
   ]
 }

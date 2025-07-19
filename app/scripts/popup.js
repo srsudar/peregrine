@@ -19,9 +19,39 @@ var saveData = async function() {
     }
 }
 
+// Display existing redirects for the current URL
+var showExistingRedirects = async function() {
+    // Get all redirects
+    const allRedirects = await chrome.storage.local.get(null);
+    const existingKeys = [];
+    
+    // Find keys that redirect to the current URL
+    for (const key in allRedirects) {
+        if (allRedirects[key] === currentTab) {
+            existingKeys.push(key);
+        }
+    }
+    
+    // Display existing redirects if any
+    if (existingKeys.length > 0) {
+        const existingDiv = document.createElement('div');
+        existingDiv.id = 'existing';
+        existingDiv.style.marginTop = '10px';
+        existingDiv.style.fontSize = '11px';
+        existingDiv.style.color = '#666';
+        existingDiv.innerHTML = '<b>Existing shortcuts:</b> ' + existingKeys.join(', ');
+        
+        // Insert after the confirmation paragraph
+        const confirmation = document.getElementById('confirmation');
+        confirmation.parentNode.insertBefore(existingDiv, confirmation.nextSibling);
+    }
+}
+
 // Updates the variable that keeps track of the current tab.
-chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+chrome.tabs.query({active: true, currentWindow: true}, async function(tabs) {
     currentTab = tabs[0].url;
+    // Show existing redirects after getting current tab
+    await showExistingRedirects();
 });
 
 // Opens the settings page.
