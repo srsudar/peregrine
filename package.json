@@ -6,6 +6,7 @@
     "dev": "vite build --watch --mode development",
     "build": "npm run build:images && vite build",
     "build:images": "node resize-images.js",
+    "dist": "npm run build && cd dist && zip -r ../peregrine.zip . && cd ..",
     "preview": "vite preview"
   },
   "devDependencies": {
