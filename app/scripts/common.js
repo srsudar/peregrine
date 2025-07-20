@@ -52,8 +52,6 @@ var scoped = function () {
     var givenKey = document.getElementById("inputval").value;
     var redirect = document.getElementById("url").value;
 
-    chrome.extension.getBackgroundPage().console.log(redirect);
-
     if (!pub.isValidKey(givenKey)) {
       pub.alertIsInvalidKey();
       return;
