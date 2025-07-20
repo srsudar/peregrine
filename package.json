@@ -4,11 +4,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite build --watch --mode development",
-    "build": "vite build",
+    "build": "npm run build:images && vite build",
+    "build:images": "node resize-images.js",
     "preview": "vite preview"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^2.0.0-beta.23",
+    "sharp": "^0.34.3",
     "vite": "^5.0.0"
   }
 }
