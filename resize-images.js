@@ -1,6 +1,6 @@
 import sharp from "sharp";
 
-const sizes = [16, 19, 32, 38, 128];
+const sizes = [16, 19, 32, 38, 128, 256];
 const input = "app/images/logo-full-size.png"; // replace with your image path
 
 sizes.forEach((size) => {

@@ -2,7 +2,7 @@
 
 > A Chrome extension that allows users to easily navigate to saved urls.
 
-<img src="app/images/logo-full-size.png" alt="Peregrine Logo" style="max-width: 256px;" />
+<img src="app/images/icon-256.png" alt="Peregrine Logo" />
 
 
 This is a fork of the wonderful [Redirect](https://github.com/kritts/redirect)
