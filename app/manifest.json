@@ -33,7 +33,15 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["settings.html", "styles/settings.css", "scripts/settings.js"],
+      "resources": [
+        "settings.html",
+        "styles/settings.css",
+        "styles/main.css",
+        "styles/common.css",
+        "scripts/settings.js",
+        "scripts/common.js",
+        "scripts/popup.js"
+      ],
       "matches": ["<all_urls>"]
     }
   ]

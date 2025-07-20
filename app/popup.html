@@ -1,36 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <link href="styles/main.css" rel="stylesheet">
-    </head>
-    <body>
-        <div id="topBar">
-            <span id='main'>Create a shortcut for this url?</span>
-        </div>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-        <div id="inputForm">
-            <input class="textBox" id="inputval" type="text" maxlength="50"/>
-            <button id="submit">Create</button>
-        </div>
+    <link href="styles/common.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+  </head>
 
-        <p id="confirmation"></p>
+  <body>
+    <script src="scripts/common.js"></script>
 
-        <div class="redirects-section">
-            <div class="redirects-title">Redirects for this url:</div>
-            <div class="redirect-item">
-                <span class="redirect-arrow">></span>
-                <span>ex</span>
-            </div>
-            <div class="redirect-item">
-                <span class="redirect-arrow">></span>
-                <span>extensions</span>
-            </div>
-        </div>
+    <!-- Input form for a new redirect --> 
+    <h1 id='heading'>Create a shortcut for this url?</h1>
+    <div id='formDiv'>
+      <form id="inputForm" action="javascript:saveData()" method=""
+                                                          autocomplete="off">
+        <input class="textBox" id="inputval" type="text">
+        <button id='submit' class="btn btn-outline-primary btn-sm">Create</button>
+      </form> 
+    </div>
 
-        <div id="bottomBar">
-            <a href="#" id="settings">Settings</a>
-        </div>
-        <script src="scripts/popup.js" type="module"></script>
-    </body>
+    <!-- --> 
+    <div id="confirmMessage">
+      <p id="_confirmation"></p> 
+    </div>
+
+    <!-- --> 
+    <div>
+      <p id="_noRedirects"></p> 
+    </div>
+
+    <!-- --> 
+    <div id='overwriteDiv' style="display:none">
+      <p id="_overwriteMsg">This Redirect already exists. Currently: </p>
+      <p id='msgOverwrite'></p>
+      <button id='overwrite' class="btn btn-primary btn-sm">Overwrite</button>
+      <button id="cancel" class="btn btn-danger btn-sm">Cancel</button>
+    </div>
+
+    <!-- --> 
+    <div id='priors'>
+      <p id='_redirectsMsg'>
+      </p>
+      <ul id='currentRedirects' class="custom-bullet">
+      </ul>
+    </div>
+
+    <!-- --> 
+    <div id='settingsDiv'>
+      <p id='settingsID'><a href="#" id="settings">Settings</a></p>
+    </div>
+    <script src="scripts/popup.js"></script>
+  </body>
 </html>

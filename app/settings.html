@@ -1,30 +1,54 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <link href="styles/settings.css" rel="stylesheet">
-    </head>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-    <body>
-        <p> <span class="heading"> Create a new Redirect</span> </p>
-  
-        <div id="inputForm">
-            <input class="textBox" id="newInput" placeholder="redirect shortcut" type="text" maxlength="30" />
-            <input class="textBox" id="url" placeholder="url" type="text" maxlength="30" />
-            <button id="new">Create new redirect</button>
-        </div>
+    <link href="styles/common.css" rel="stylesheet">
+    <link href="styles/settings.css" rel="stylesheet">
+  </head>
 
-       <p id="confirmationVal"></p> 
- 
-        <p> <span class="heading">Saved Redirects</span> </p>
-        <table align="center" id="mainTables">
-            <tr class="header">
-                <th>Redirect</th>
-                <th>url</th>
-                <th></th> <!--holds the remove button --> 
-            </tr> 
-        </table>
+  <body>
+    <script src="scripts/common.js"></script>
+    <div id="content"> 
 
-        <script src="scripts/settings.js" type="module"></script>
-    </body>
+      <!-- Input form for a new redirect -->  
+      <h2 id="welcome">Welcome to Redirect!</h2>
+      <p id="infoRedirect">
+      Redirect is a Chrome extension that makes it easy to navigate 
+      to custom urls. Users can save keys that map to saved urls. 
+      Typing ";" (a semicolon), then a space, and then the saved key into the address bar 
+      opens a user's saved url in the browser.
+      </p>
+
+      <!-- Input form for a new redirect -->  
+      <h1>Create a new Redirect</h1>
+      <form id="inputForm" action="javascript:createRedirect()" method="">
+        <input class="textBox" id="inputval" placeholder="redirect shortcut" type="text"/>
+        <input class="textBox" id="url" placeholder="url" type="text"/>
+        <button id="new" class="btn btn-outline-primary btn-sm">Create new redirect</button>
+      </form>
+
+      <!-- Confirmation when a new redirect is created -->  
+      <p id="_confirmation" class="confirmationval"></p> 
+
+      <!-- Overriding option -->  
+      <div id='overwriteDiv' style="display:none">
+        <p id="_overwriteMsg">This redirect already exists. Currently: </p>
+        <p id='msgOverwrite'></p>
+        <button id='overwrite' class="btn btn-primary btn-sm">Overwrite</button>
+        <button id="cancel" class="btn btn-danger btn-sm">Cancel</button>
+      </div>
+
+      <!-- List current redirects -->  
+      <h1 id='savedRedirects'>Saved Redirects</h1>
+      <table align="center" id="mainTables" class="table">
+        <tr class="header"> 
+        </tr> 
+      </table>
+    </div>
+
+    <script src="scripts/settings.js"></script>
+  </body>
 </html>

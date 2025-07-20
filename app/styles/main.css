@@ -1,107 +1,70 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.custom-bullet li {
+  display: block;
+}
+
+.custom-bullet li:before {
+  font-family: 'FontAwesome';
+  content: '\f054';
+  font-size: 9px;
+  float: left;
+  margin-top: 4px;
+  margin-left: -17px;
+  color: #8c8c8c;
+}
+
+ul { 
+  list-style-type: none; 
+  font-size: 14px;
+}
+
+a {
+    font-size: 9px; 
 }
 
 body {
-    width: 320px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: white;
-    font-size: 14px;
+    width: 300px;
+    padding: 10px;
 }
 
-#topBar {
-    padding: 20px 20px 16px 20px;
-    border-bottom: 1px solid #e5e5e5;
+h1 { 
+    font-size: 18px
 }
 
-#main {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
+p {  
+    margin-bottom: 5px;
 }
 
-#inputForm {
-    padding: 20px;
-    display: flex;
-    gap: 8px;
-}
-
-.textBox {
-    flex: 1;
-    padding: 8px 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 14px;
-    outline: none;
-}
-
-.textBox:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-#submit {
-    padding: 8px 16px;
-    background: #3b82f6;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-}
-
-#submit:hover {
-    background: #2563eb;
-}
-
-#confirmation {
-    margin: 0;
-    padding: 0 20px;
-    color: #666;
-    font-size: 13px;
-}
-
-.redirects-section {
-    padding: 20px;
-    border-top: 1px solid #e5e5e5;
-}
-
-.redirects-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 12px;
-}
-
-.redirect-item {
-    display: flex;
-    align-items: center;
-    padding: 8px 0;
-    color: #666;
-}
-
-.redirect-arrow {
-    margin-right: 8px;
-    color: #999;
-    font-size: 12px;
-}
-
-#bottomBar {
-    padding: 16px 20px;
-    border-top: 1px solid #e5e5e5;
+#_confirmation {
+    padding-bottom: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
+    word-wrap: break-word;
     text-align: center;
 }
 
-#settings {
-    color: #3b82f6;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
+#formDiv { 
+    padding-bottom: 10px;
 }
 
-#settings:hover {
-    text-decoration: underline;
+#inputval {
+    float: left;
+    margin-right: 15px;
+}
+
+#msgOverwrite {
+   word-wrap: break-word;
+}
+
+#overwriteDiv {
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+#settings { 
+    color: #11c;
+    font-size: 12px;
+}
+ 
+#settingsID { 
+    text-align: center; 
 }
