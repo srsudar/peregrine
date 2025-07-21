@@ -7,16 +7,19 @@ var currentTab;
 
 var commonFunctions = window.commonFunctions;
 
+function getCurrentKey() {
+  return document.getElementById("inputval").value;
+}
+
 // Called when a user wants to save a key as a redirect to the currently open tab.
 // If the key is not undefined or empty, it is saved.
 var saveData = function saveData() {
-  var key = document.getElementById("inputval").value;
+  const key = getCurrentKey();
   if (!commonFunctions.isValidKey(key)) {
     commonFunctions.alertIsInvalidKey();
     return;
   }
-  console.log(key);
-  commonFunctions.checkKeyAndSave(key, currentTab);
+  commonFunctions.checkKeyAndSave(key, currentTab, showCurrentRedirects);
 };
 
 // Updates the variable that keeps track of the current tab.
@@ -34,7 +37,6 @@ chrome.tabs.query(
 
 // Opens the settings page.
 var openSettings = function () {
-  console.log("clicked open settings");
   chrome.runtime.openOptionsPage();
 };
 
@@ -57,6 +59,10 @@ var showCurrentRedirects = function showCurrentRedirects() {
   var hasKeys = false;
   var ul = document.getElementById("currentRedirects");
 
+  while (ul.firstChild) {
+    ul.removeChild(ul.firstChild);
+  }
+
   chrome.storage.sync.get(null, function (items) {
     for (var key in items) {
       // check hasOwnProperty to make sure it's a key and doesn't come from the
@@ -78,11 +84,22 @@ var showCurrentRedirects = function showCurrentRedirects() {
   });
 };
 
+document
+  .querySelector("#inputForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    saveData();
+  });
+
 document.querySelector("#submit").addEventListener("click", saveData);
 document.querySelector("#settings").addEventListener("click", openSettings);
-document
-  .querySelector("#overwrite")
-  .addEventListener("click", commonFunctions.saveDataGuarantee);
+document.querySelector("#overwrite").addEventListener("click", () => {
+  commonFunctions.saveDataGuarantee({
+    optionalKey: getCurrentKey(),
+    optionalUrl: currentTab,
+    callback: showCurrentRedirects,
+  });
+});
 document
   .querySelector("#cancel")
   .addEventListener("click", commonFunctions.cancel);

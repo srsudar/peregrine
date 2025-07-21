@@ -81,12 +81,24 @@ var removeRedirect = function removeRedirect(button) {
   populateRedirects();
 };
 
+document
+  .querySelector("#inputForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    commonFunctions.createRedirectSettings({
+      guarentee: null,
+      callback: populateRedirects,
+    });
+  });
+
 document.querySelector("#new").addEventListener("click", () => {
   commonFunctions.createRedirectSettings(null, populateRedirects);
 });
-document
-  .querySelector("#overwrite")
-  .addEventListener("click", commonFunctions.saveDataGuarantee);
+
+document.querySelector("#overwrite").addEventListener("click", () => {
+  commonFunctions.saveDataGuarantee({ callback: populateRedirects });
+});
+
 document
   .querySelector("#cancel")
   .addEventListener("click", commonFunctions.cancel);

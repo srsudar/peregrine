@@ -36,24 +36,36 @@ var scoped = function () {
     return true;
   };
 
-  pub.saveDataGuarantee = function saveDataGuarantee() {
+  pub.saveDataGuarantee = function saveDataGuarantee({
+    optionalKey,
+    optionalUrl,
+    callback,
+  }) {
     document.getElementById("overwriteDiv").style.display = "none";
     var key = document.getElementById("inputval").value;
     if (typeof currentTab !== "undefined") {
       pub.saveRedirect(key, currentTab);
     } else {
-      pub.createRedirectSettings("guarentee");
+      pub.createRedirectSettings({
+        guarentee: "guarentee",
+        optionalKey,
+        optionalUrl,
+        callback,
+      });
     }
   };
 
   // Since the user is creating the Redirect, we're not guaranteed that the
   // Redirect is properly formatted.
-  pub.createRedirectSettings = function createRedirectSettings(
+  pub.createRedirectSettings = function createRedirectSettings({
+    // the string 'guarentee' to skip checking if you are overriding
     guarentee,
+    optionalKey,
+    optionalUrl,
     callback,
-  ) {
-    var givenKey = document.getElementById("inputval").value;
-    var redirect = document.getElementById("url").value;
+  }) {
+    var givenKey = optionalKey ?? document.getElementById("inputval").value;
+    var redirect = optionalUrl ?? document.getElementById("url").value;
 
     if (!pub.isValidKey(givenKey)) {
       pub.alertIsInvalidKey();
@@ -116,6 +128,7 @@ var scoped = function () {
       // Ask user to reconfirm their key if it already exists
       if (exists) {
         pub.showReconfirmationMessage(key, value);
+        debugger;
       } else {
         pub.saveRedirect(key, currentTab, success);
       }
