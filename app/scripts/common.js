@@ -128,7 +128,6 @@ var scoped = function () {
       // Ask user to reconfirm their key if it already exists
       if (exists) {
         pub.showReconfirmationMessage(key, value);
-        debugger;
       } else {
         pub.saveRedirect(key, currentTab, success);
       }

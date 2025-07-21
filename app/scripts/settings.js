@@ -91,10 +91,6 @@ document
     });
   });
 
-document.querySelector("#new").addEventListener("click", () => {
-  commonFunctions.createRedirectSettings(null, populateRedirects);
-});
-
 document.querySelector("#overwrite").addEventListener("click", () => {
   commonFunctions.saveDataGuarantee({ callback: populateRedirects });
 });

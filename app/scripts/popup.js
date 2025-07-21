@@ -19,7 +19,7 @@ var saveData = function saveData() {
     commonFunctions.alertIsInvalidKey();
     return;
   }
-  commonFunctions.checkKeyAndSave(key, currentTab, showCurrentRedirects);
+  commonFunctions.checkKeyAndSave(key, currentTab);
 };
 
 // Updates the variable that keeps track of the current tab.
@@ -59,7 +59,7 @@ var showCurrentRedirects = function showCurrentRedirects() {
   var hasKeys = false;
   var ul = document.getElementById("currentRedirects");
 
-  while (ul.firstChild) {
+  while (ul && ul.firstChild) {
     ul.removeChild(ul.firstChild);
   }
 
@@ -97,7 +97,6 @@ document.querySelector("#overwrite").addEventListener("click", () => {
   commonFunctions.saveDataGuarantee({
     optionalKey: getCurrentKey(),
     optionalUrl: currentTab,
-    callback: showCurrentRedirects,
   });
 });
 document
