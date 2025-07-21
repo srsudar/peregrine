@@ -1,6 +1,6 @@
 {
   "name": "Peregrine",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "manifest_version": 3,
   "description": "An extension that allows users to easily navigate to saved urls.",
   "omnibox": {

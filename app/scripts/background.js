@@ -6,14 +6,18 @@ chrome.omnibox.onInputChanged.addListener(async function (text, suggest) {
   const result = await chrome.storage.sync.get(text);
   const url = result[text];
 
-  if (url == undefined) {
+  if (!url) {
     chrome.omnibox.setDefaultSuggestion({ description: "No redirect found." });
   } else {
     chrome.omnibox.setDefaultSuggestion({
-      description: "Redirecting you to: " + url,
+      description: "Redirecting you to: <url>" + escapeHtml(url) + "</url>",
     });
   }
 });
+
+function escapeHtml(str) {
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
 
 // This event is fired when the user accepts the input in the omnibox.
 // It opens the redirect that the user-given key maps to.
