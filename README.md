@@ -53,7 +53,10 @@ Then, install Peregrine, open the settings page, and run this:
 ```
 t = <paste results from above and hit enter>
 
-for (const [key, value] of Object.entries(t)) {
-  window.commonFunctions.saveRedirect(key, value);
-}
+(async () => {
+  for (const [key, value] of Object.entries(t)) {
+    window.commonFunctions.saveRedirect(key, value);
+    await new Promise(r => setTimeout(r, 1000));
+  }
+})()
 ```
