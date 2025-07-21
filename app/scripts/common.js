@@ -16,7 +16,7 @@ var scoped = function () {
   // The error code when trying to access local storage.
   var ERROR_FLAG = -1;
 
-  var MSG_SAVE_FAIL = "Your direct was not saved: ";
+  var MSG_SAVE_FAIL = "Your redirect was not saved: ";
   var MSG_SAVE_SUCCESS = "Your redirect was created!<br>";
   var MSG_BAD_KEY = "Redirects must have at least one character.";
 
@@ -57,14 +57,13 @@ var scoped = function () {
       return;
     }
 
-    // If they didn't include the scheme, we need to include it and will default
-    // to http.
+    // If they didn't include the scheme, we need to include it.
     if (
       !redirect.includes("chrome://") &&
       !redirect.includes("chrome-extension") &&
       !/^http[s]?:\/\//.test(redirect)
     ) {
-      redirect = "http://".concat(redirect);
+      redirect = "https://".concat(redirect);
     }
     if (guarentee === "guarentee") {
       pub.saveRedirect(givenKey, redirect, populateRedirects);
@@ -149,6 +148,8 @@ var scoped = function () {
     keyValue[key] = value;
     chrome.storage.sync.set(keyValue, function () {
       if (chrome.runtime.lastError) {
+        console.error('could not save "' + key + '" → "' + value + '"');
+        console.error(chrome.runtime.lastError);
         // Something went wrong saving.
         pub.setMessage(MSG_SAVE_FAIL + chrome.runtime.lastError);
       } else {
