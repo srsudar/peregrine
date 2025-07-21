@@ -48,7 +48,10 @@ var scoped = function () {
 
   // Since the user is creating the Redirect, we're not guaranteed that the
   // Redirect is properly formatted.
-  pub.createRedirectSettings = function createRedirectSettings(guarentee) {
+  pub.createRedirectSettings = function createRedirectSettings(
+    guarentee,
+    callback,
+  ) {
     var givenKey = document.getElementById("inputval").value;
     var redirect = document.getElementById("url").value;
 
@@ -66,9 +69,9 @@ var scoped = function () {
       redirect = "https://".concat(redirect);
     }
     if (guarentee === "guarentee") {
-      pub.saveRedirect(givenKey, redirect, populateRedirects);
+      pub.saveRedirect(givenKey, redirect, callback);
     } else {
-      pub.checkKeyAndSave(givenKey, redirect, populateRedirects);
+      pub.checkKeyAndSave(givenKey, redirect, callback);
     }
   };
 

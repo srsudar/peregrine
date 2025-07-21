@@ -34,9 +34,8 @@ chrome.tabs.query(
 
 // Opens the settings page.
 var openSettings = function () {
-  chrome.tabs.create({
-    url: "settings.html",
-  });
+  console.log("clicked open settings");
+  chrome.runtime.openOptionsPage();
 };
 
 /**

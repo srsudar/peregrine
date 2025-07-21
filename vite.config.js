@@ -1,14 +1,12 @@
-import { defineConfig } from 'vite'
-import { crx } from '@crxjs/vite-plugin'
-import manifest from './app/manifest.json' assert { type: 'json' }
+import { defineConfig } from "vite";
+import { crx } from "@crxjs/vite-plugin";
+import manifest from "./app/manifest.json" assert { type: "json" };
 
 export default defineConfig({
-  root: 'app',
+  root: "app",
   build: {
-    outDir: '../dist',
-    emptyOutDir: true
+    outDir: "../dist",
+    emptyOutDir: true,
   },
-  plugins: [
-    crx({ manifest })
-  ]
-})
+  plugins: [crx({ manifest })],
+});

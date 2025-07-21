@@ -81,9 +81,9 @@ var removeRedirect = function removeRedirect(button) {
   populateRedirects();
 };
 
-document
-  .querySelector("#new")
-  .addEventListener("click", commonFunctions.createRedirectSettings);
+document.querySelector("#new").addEventListener("click", () => {
+  commonFunctions.createRedirectSettings(null, populateRedirects);
+});
 document
   .querySelector("#overwrite")
   .addEventListener("click", commonFunctions.saveDataGuarantee);

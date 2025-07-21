@@ -11,6 +11,10 @@
     "32": "images/icon-32.png",
     "128": "images/icon-128.png"
   },
+  "options_ui": {
+    "page": "settings.html",
+    "open_in_tab": true
+  },
   "default_locale": "en",
   "background": {
     "service_worker": "scripts/background.js"
@@ -24,22 +28,7 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "tabs",
     "activeTab",
     "storage"
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "settings.html",
-        "styles/settings.css",
-        "styles/main.css",
-        "styles/common.css",
-        "scripts/settings.js",
-        "scripts/common.js",
-        "scripts/popup.js"
-      ],
-      "matches": ["<all_urls>"]
-    }
   ]
 }
